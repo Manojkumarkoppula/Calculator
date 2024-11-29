@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title>Improved Calculator</title>
+        <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+    }
+    #calculator {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    #display {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 20px;
+        font-size: 20px;
+        text-align: right;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        font-size: 18px;
+        background: #e0e0e0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+    button:hover {
+        background: #d6d6d6;
+    }
+    #equals {
+        background: #4caf50;
+        color: white;
+        border: none;
+    }
+    #equals:hover {
+        background: #45a049;
+    }
+    .operator {
+        background: #f39c12;
+        color: white;
+        border: none;
+    }
+    .operator:hover {
+        background: #e67e22;
+    }
+    .action {
+        background: #e74c3c;
+        color: white;
+        border: none;
+    }
+    .action:hover {
+        background: #c0392b;
+    }
+</style>
+
+    </head>
+    <body>
+        <div id="calculator">
+            <input id="display" disabled><br>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button onclick="addfun('%')">%</button>
+            <button onclick="addfun('/')">/</button><br>
+            
+            <button onclick="addfun(7)">7</button>
+            <button onclick="addfun(8)">8</button>
+            <button onclick="addfun(9)">9</button>
+            <button onclick="addfun('*')">*</button><br>
+            
+            <button onclick="addfun(4)">4</button>
+            <button onclick="addfun(5)">5</button>
+            <button onclick="addfun(6)">6</button>
+            <button onclick="addfun('-')">-</button><br>
+            
+            <button onclick="addfun(1)">1</button>
+            <button onclick="addfun(2)">2</button>
+            <button onclick="addfun(3)">3</button>
+            <button onclick="addfun('+')">+</button><br>
+            
+            <button onclick="addfun(0)">0</button>
+            <button onclick="addfun('.')">.</button>
+            <button id="equals" onclick="cal()">=</button>
+        </div>
+        
+        <script>
+            let v = document.getElementById("display");
+            
+            // Append value to the display
+            function addfun(val) {
+                v.value += val;
+            }
+            
+            // Clear the entire display
+            function clearDisplay() {
+                v.value = '';
+            }
+            
+            // Delete the last character from the display
+            function deleteLast() {
+                v.value = v.value.slice(0, -1);
+            }
+            
+            // Calculate the expression in the display
+            function cal() {
+                try {
+                    let expression = v.value; // Get the expression
+                    let result = eval(expression); // Evaluate the expression
+                    v.value = result; // Display the result
+                } catch (error) {
+                    v.value = "Error"; // Handle invalid expressions
+                }
+            }
+        </script>
+    </body>
+</html>
